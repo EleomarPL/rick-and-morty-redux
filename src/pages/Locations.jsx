@@ -1,6 +1,17 @@
+import { useState } from 'react'
+
+import InputSearchWithDebounder from '../components/views/InputSearchWithDebounder'
+
 const Locations = () => {
+  const [searcher, setSearcher] = useState('')
+
   return (
-    <p>Locaciones</p>
+    <div className="container-fluid">
+      <InputSearchWithDebounder namePage="Locacione"
+        setSearcher={ setSearcher }
+      />
+      <span>{ searcher }</span>
+    </div>
   )
 }
 
