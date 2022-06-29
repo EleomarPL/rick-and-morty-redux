@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types'
 
-const Icon = ({ className = '', styles = {} }) => {
+const Icon = ({ className = '', stylesToAdd = {}, withSpace = false }) => {
   return (
     <i className={ className }
       style={ {
         color: 'var(--text-primary)',
-        ...styles
+        paddingRight: withSpace ? '0.5rem' : '0',
+        ...stylesToAdd
       } }
     />
   )
@@ -13,7 +14,8 @@ const Icon = ({ className = '', styles = {} }) => {
 
 Icon.propTypes = {
   className: PropTypes.string.isRequired,
-  styles: PropTypes.object
+  stylesToAdd: PropTypes.object,
+  withSpace: PropTypes.bool
 }
 
 export default Icon
