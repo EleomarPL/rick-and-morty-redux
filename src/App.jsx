@@ -1,16 +1,18 @@
+import { lazy, Suspense } from 'react'
 import styled from 'styled-components'
 import { Routes, Route } from 'react-router-dom'
 
 import NavHeader from './components/views/NavHeader'
-
-import Characters from './pages/Characters'
-import Episodes from './pages/Episodes'
-import Locations from './pages/Locations'
+import SpinnerPage from './components/common/SpinnerPage'
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '@fontsource/roboto'
+
+const Characters = lazy(() => import('./pages/Characters'))
+const Episodes = lazy(() => import('./pages/Episodes'))
+const Locations = lazy(() => import('./pages/Locations'))
 
 function App () {
   return (
@@ -20,17 +22,23 @@ function App () {
         <Routes>
           <Route index
             element={
-              <Characters />
+              <Suspense fallback={<SpinnerPage />}>
+                <Characters />
+              </Suspense>
             }
           />
           <Route path="episodes"
             element={
-              <Episodes />
+              <Suspense fallback={<SpinnerPage />}>
+                <Episodes />
+              </Suspense>
             }
           />
           <Route path="locations"
             element={
-              <Locations />
+              <Suspense fallback={<SpinnerPage />}>
+                <Locations />
+              </Suspense>
             }
           />
         </Routes>
@@ -46,6 +54,7 @@ const MainApp = styled.div`
 `
 const MainPage = styled.main`
   margin: auto;
+  margin-top: 2rem;
   max-width: 80vw;
 `
 
