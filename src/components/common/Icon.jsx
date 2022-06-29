@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 const Icon = ({ className = '', styles = {} }) => {
   return (
     <i className={ className }
@@ -7,6 +9,11 @@ const Icon = ({ className = '', styles = {} }) => {
       } }
     />
   )
+}
+
+Icon.propTypes = {
+  className: PropTypes.string.isRequired,
+  styles: PropTypes.object
 }
 
 export default Icon
