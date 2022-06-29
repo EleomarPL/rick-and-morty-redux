@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import NavHeader from './components/views/NavHeader'
+
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -8,7 +10,7 @@ import '@fontsource/roboto'
 function App () {
   return (
     <MainApp>
-      <h1>App</h1>
+      <NavHeader />
     </MainApp>
   )
 }

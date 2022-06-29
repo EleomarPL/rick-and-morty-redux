@@ -3,11 +3,14 @@
   --text-secondary: #757575;
   --bg-primary: #212121;
   --bg-secondary: #37474f;
+  --border-primary: #757575;
 
   --bg-dark-primary: #212121;
   --bg-light-primary: #eceff1;
   --bg-dark-secondary: #37474f;
   --bg-light-secondary: #cfd8dc;
+  --border-color-dark: #757575;
+  --border-color-light: #757575;
 
   --text-dark-primary: #ffffff;
   --text-light-primary: #212121;
