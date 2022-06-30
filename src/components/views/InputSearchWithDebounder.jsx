@@ -19,7 +19,7 @@ const InputSearchWithDebounder = ({ namePage, setSearcher }) => {
   }, [])
 
   return (
-    <div className="container d-flex align-items-center justify-content-center">
+    <div className="container d-flex align-items-center justify-content-center mb-4">
       <Icon className="bi bi-search" withSpace={ true } />
       <input
         type="text"
