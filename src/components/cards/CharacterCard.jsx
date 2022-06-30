@@ -9,6 +9,7 @@ const CharacterCard = ({ character }) => {
       elementTop={
         <img src={ character.image } className="card-img-top" alt={ character.name } />
       }
+      link={ '/characters/' + character.id }
     >
       <p className="card-text">Status: <Span>{ character.status }</Span></p>
       <p className="card-text">Especie: <Span>{ character.species }</Span></p>

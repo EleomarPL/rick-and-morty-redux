@@ -1,14 +1,17 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
-const BaseCard = ({ children, title, elementTop }) => {
+const BaseCard = ({ children, title, elementTop, link }) => {
   return (
     <Card className="card bg-transparent">
       { elementTop }
       <div className="card-body">
         <h5 className="card-title">{ title }</h5>
         { children }
-        <a href="#" className="btn btn-primary">Go somewhere</a>
+        { link &&
+          <Link to={ link.toString() } className="btn btn-primary">More Details</Link>
+        }
       </div>
     </Card>
   )
@@ -17,7 +20,8 @@ const BaseCard = ({ children, title, elementTop }) => {
 BaseCard.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
-  elementTop: PropTypes.node
+  elementTop: PropTypes.node,
+  link: PropTypes.string
 }
 
 const Card = styled.article`

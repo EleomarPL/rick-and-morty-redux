@@ -6,7 +6,7 @@ import BaseCard from './BaseCard'
 const EpisodeCard = ({ episode }) => {
   return (
     <BaseCard
-      title={ episode.name }
+      title={ episode.name } link={ '/episodes/' + episode.id }
     >
       <p className="card-text">Air_date: <Span>{ episode.air_date }</Span></p>
       <p className="card-text">Episode: <Span>{ episode.episode }</Span></p>
