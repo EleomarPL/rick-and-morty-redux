@@ -13,6 +13,9 @@ import '@fontsource/roboto'
 const Characters = lazy(() => import('./pages/Characters'))
 const Episodes = lazy(() => import('./pages/Episodes'))
 const Locations = lazy(() => import('./pages/Locations'))
+const Episode = lazy(() => import('./components/views/Episode'))
+const Location = lazy(() => import('./components/views/Location'))
+const Character = lazy(() => import('./components/views/Character'))
 
 function App () {
   return (
@@ -27,20 +30,45 @@ function App () {
               </Suspense>
             }
           />
-          <Route path="episodes"
+          <Route path='/characters/:characterId'
             element={
               <Suspense fallback={<SpinnerPage />}>
-                <Episodes />
+                <Character />
               </Suspense>
             }
           />
-          <Route path="locations"
-            element={
-              <Suspense fallback={<SpinnerPage />}>
-                <Locations />
-              </Suspense>
-            }
-          />
+          <Route path="episodes">
+            <Route index
+              element={
+                <Suspense fallback={<SpinnerPage />}>
+                  <Episodes />
+                </Suspense>
+              }
+            />
+            <Route path=":episodeId"
+              element={
+                <Suspense fallback={<SpinnerPage />}>
+                  <Episode />
+                </Suspense>
+              }
+            />
+          </Route>
+          <Route path="locations">
+            <Route index
+              element={
+                <Suspense fallback={<SpinnerPage />}>
+                  <Locations />
+                </Suspense>
+              }
+            />
+            <Route path=":locationId"
+              element={
+                <Suspense fallback={<SpinnerPage />}>
+                  <Location />
+                </Suspense>
+              }
+            />
+          </Route>
         </Routes>
       </MainPage>
     </MainApp>
