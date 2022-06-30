@@ -7,7 +7,7 @@ const CharacterCard = ({ character }) => {
   return (
     <BaseCard title={ character.name }
       elementTop={
-        <img src={ character.image } className="card-img-top" alt={ name } />
+        <img src={ character.image } className="card-img-top" alt={ character.name } />
       }
     >
       <p className="card-text">Status: <Span>{ character.status }</Span></p>
