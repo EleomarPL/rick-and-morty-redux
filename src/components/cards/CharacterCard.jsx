@@ -10,9 +10,9 @@ const CharacterCard = ({ character }) => {
         <img src={ character.image } className="card-img-top" alt={ name } />
       }
     >
-    <p className="card-text">Status: <Span>{ character.status }</Span></p>
-    <p className="card-text">Especie: <Span>{ character.species }</Span></p>
-    <p className="card-text">Gender: <Span>{ character.gender }</Span></p>
+      <p className="card-text">Status: <Span>{ character.status }</Span></p>
+      <p className="card-text">Especie: <Span>{ character.species }</Span></p>
+      <p className="card-text">Gender: <Span>{ character.gender }</Span></p>
     </BaseCard>
   )
 }
