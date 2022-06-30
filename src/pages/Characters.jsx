@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+import CharacterCard from '../components/cards/CharacterCard'
+import ComponentGrouper from '../components/common/ComponentGrouper'
 import InputSearchWithDebounder from '../components/views/InputSearchWithDebounder'
 import { searchByName } from '../features/charactersSlice'
 
@@ -21,15 +23,15 @@ const Characters = () => {
         setSearcher={ setSearcher }
       />
       { status === 'loading' && <div>Cargando...</div> }
-      { characters &&
-        characters.map(character => (
-          <div key={ character.id }>
-            <h2>{ character.name }</h2>
-            <p>{ character.status }</p>
-            <p>{ character.species }</p>
-          </div>
-        ))
-      }
+      <ComponentGrouper>
+        { characters &&
+          characters.map(character => (
+            <CharacterCard key={ character.id }
+              character={ character }
+            />
+          ))
+        }
+      </ComponentGrouper>
     </div>
   )
 }
