@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
+import { getNextPage, getPreviusPage, searchByName } from '../features/episodesSlice'
+
 import NextPageButton from '../components/buttons/NextPageButton'
 import PreviusPageButton from '../components/buttons/PreviusPageButton'
-
 import EpisodeCard from '../components/cards/EpisodeCard'
 import ComponentGrouper from '../components/common/ComponentGrouper'
 import GroupButtons from '../components/common/GroupButtons'
 import InputSearchWithDebounder from '../components/views/InputSearchWithDebounder'
-import { getNextPage, getPreviusPage, searchByName } from '../features/episodesSlice'
 
 const Episodes = () => {
   const episodes = useSelector(state => state.episodes.value)
