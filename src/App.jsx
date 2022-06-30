@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import styled from 'styled-components'
 import { Routes, Route } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 import NavHeader from './components/views/NavHeader'
 import SpinnerPage from './components/common/SpinnerPage'
@@ -25,47 +26,96 @@ function App () {
         <Routes>
           <Route index
             element={
-              <Suspense fallback={<SpinnerPage />}>
-                <Characters />
-              </Suspense>
+              <>
+                <Helmet>
+                  <title>Rick and Morty | Characters</title>
+                  <meta name="description" content="Information for Rick and Morty,
+                    this information was recolect for an public API, getting characters,
+                    locations and episodes"
+                  />
+                </Helmet>
+                <Suspense fallback={<SpinnerPage />}>
+                  <Characters />
+                </Suspense>
+              </>
             }
           />
           <Route path='/characters/:characterId'
             element={
-              <Suspense fallback={<SpinnerPage />}>
-                <Character />
-              </Suspense>
+              <>
+                <Helmet>
+                  <title>Rick and Morty | Character</title>
+                  <meta name="description" content="Details for a character,
+                    with episodes and locations that character has been in"
+                  />
+                </Helmet>
+                <Suspense fallback={<SpinnerPage />}>
+                  <Character />
+                </Suspense>
+              </>
             }
           />
           <Route path="episodes">
             <Route index
               element={
-                <Suspense fallback={<SpinnerPage />}>
-                  <Episodes />
-                </Suspense>
+                <>
+                  <Helmet>
+                    <title>Rick and Morty | Episodes</title>
+                    <meta name="description" content="Information for episodes of Rick and Morty,
+                      this information was recolect for an public API"
+                    />
+                  </Helmet>
+                  <Suspense fallback={<SpinnerPage />}>
+                    <Episodes />
+                  </Suspense>
+                </>
               }
             />
             <Route path=":episodeId"
               element={
-                <Suspense fallback={<SpinnerPage />}>
-                  <Episode />
-                </Suspense>
+                <>
+                  <Helmet>
+                    <title>Rick and Morty | Episode</title>
+                    <meta name="description" content="Detail for episode of Rick and Morty,
+                      with characters that episode has been in"
+                    />
+                  </Helmet>
+                  <Suspense fallback={<SpinnerPage />}>
+                    <Episode />
+                  </Suspense>
+                </>
               }
             />
           </Route>
           <Route path="locations">
             <Route index
               element={
-                <Suspense fallback={<SpinnerPage />}>
-                  <Locations />
-                </Suspense>
+                <>
+                  <Helmet>
+                    <title>Rick and Morty | Locations</title>
+                    <meta name="description" content="Information for locations of Rick and Morty,
+                      this information was recolect for an public API"
+                    />
+                  </Helmet>
+                  <Suspense fallback={<SpinnerPage />}>
+                    <Locations />
+                  </Suspense>
+                </>
               }
             />
             <Route path=":locationId"
               element={
-                <Suspense fallback={<SpinnerPage />}>
-                  <Location />
-                </Suspense>
+                <>
+                  <Helmet>
+                    <title>Rick and Morty | Location</title>
+                    <meta name="description" content="Detail for location of Rick and Morty,
+                      with characters that episode has been in"
+                    />
+                  </Helmet>
+                  <Suspense fallback={<SpinnerPage />}>
+                    <Location />
+                  </Suspense>
+                </>
               }
             />
           </Route>
