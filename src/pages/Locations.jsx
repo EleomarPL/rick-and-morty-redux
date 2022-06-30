@@ -31,7 +31,7 @@ const Locations = () => {
 
   return (
     <div className="container-fluid">
-      <InputSearchWithDebounder namePage="Locacione"
+      <InputSearchWithDebounder namePage="Locations"
         setSearcher={ setSearcher }
       />
       { status === 'loading' && <div>Cargando...</div> }

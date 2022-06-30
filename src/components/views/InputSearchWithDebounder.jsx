@@ -23,7 +23,7 @@ const InputSearchWithDebounder = ({ namePage, setSearcher }) => {
       <Icon className="bi bi-search" withSpace={ true } />
       <input
         type="text"
-        placeholder={ `Buscar ${namePage}` }
+        placeholder={ `Search ${namePage}` }
         className="form-control"
         id="search"
         onChange={ handleDebouncerChanges }

@@ -32,7 +32,7 @@ const Characters = () => {
 
   return (
     <div className="container-fluid">
-      <InputSearchWithDebounder namePage="Personaje"
+      <InputSearchWithDebounder namePage="Characters"
         setSearcher={ setSearcher }
       />
       <GroupButtons>

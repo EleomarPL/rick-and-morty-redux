@@ -31,7 +31,7 @@ const Episodes = () => {
 
   return (
     <div className="container-fluid">
-      <InputSearchWithDebounder namePage="Episodio"
+      <InputSearchWithDebounder namePage="Episodes"
         setSearcher={ setSearcher }
       />
       { status === 'loading' && <div>Cargando...</div> }
