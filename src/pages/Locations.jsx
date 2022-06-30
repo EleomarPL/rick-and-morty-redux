@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import LocationCard from '../components/cards/LocationCard'
+import ComponentGrouper from '../components/common/ComponentGrouper'
 
 import InputSearchWithDebounder from '../components/views/InputSearchWithDebounder'
 import { searchByName } from '../features/locationsSlice'
@@ -21,13 +23,15 @@ const Locations = () => {
         setSearcher={ setSearcher }
       />
       { status === 'loading' && <div>Cargando...</div> }
-      { locations &&
-        locations.map(location => (
-          <div key={ location.id }>
-            <h2>{ location.name }</h2>
-          </div>
-        ))
-      }
+      <ComponentGrouper>
+        { locations &&
+          locations.map(location => (
+            <LocationCard key={ location.id }
+              location={ location }
+            />
+          ))
+        }
+      </ComponentGrouper>
     </div>
   )
 }
