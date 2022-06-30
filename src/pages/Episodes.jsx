@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+import EpisodeCard from '../components/cards/EpisodeCard'
+import ComponentGrouper from '../components/common/ComponentGrouper'
 import InputSearchWithDebounder from '../components/views/InputSearchWithDebounder'
 import { searchByName } from '../features/episodesSlice'
 
@@ -21,13 +23,15 @@ const Episodes = () => {
         setSearcher={ setSearcher }
       />
       { status === 'loading' && <div>Cargando...</div> }
-      { episodes &&
-        episodes.map(episode => (
-          <div key={ episode.id }>
-            <h2>{ episode.name }</h2>
-          </div>
-        ))
-      }
+      <ComponentGrouper>
+        { episodes &&
+          episodes.map(episode => (
+            <EpisodeCard key={ episode.id }
+              episode={ episode }
+            />
+          ))
+        }
+      </ComponentGrouper>
     </div>
   )
 }
