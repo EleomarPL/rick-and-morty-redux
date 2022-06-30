@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-import { searchCharacterByNameAxios } from '../services/apis/character'
+import { getCharacterByIdAxios, searchCharacterByNameAxios } from '../services/apis/character'
 import { getNextPageAxios, getPreviusPageAxios } from '../services/apis/general'
 
 export const searchByName = createAsyncThunk(
@@ -21,11 +21,18 @@ export const getPreviusPage = createAsyncThunk(
     return await getPreviusPageAxios(action)
   }
 )
+export const getCharacterById = createAsyncThunk(
+  'characters/getCharacterById',
+  async (action) => {
+    return await getCharacterByIdAxios(action)
+  }
+)
 
 export const charactersSlice = createSlice({
   name: 'characters',
   initialState: {
     value: [],
+    character: {},
     status: 'idle',
     statusNext: 'idle',
     statusPrev: 'idle',
@@ -39,6 +46,16 @@ export const charactersSlice = createSlice({
   },
   extraReducers (builder) {
     builder
+      .addCase(getCharacterById.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(getCharacterById.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.character = action.payload
+      })
+      .addCase(getCharacterById.rejected, (state, action) => {
+        state.status = 'error'
+      })
       .addCase(searchByName.pending, (state, action) => {
         state.status = 'loading'
       })
@@ -47,6 +64,7 @@ export const charactersSlice = createSlice({
         state.value = action.payload.results
         state.nextPage = action.payload.info.next
         state.previusPage = action.payload.info.prev
+        state.character = {}
       })
       .addCase(searchByName.rejected, (state, action) => {
         state.status = 'error'
@@ -59,6 +77,7 @@ export const charactersSlice = createSlice({
         state.value = action.payload.results
         state.nextPage = action.payload.info.next
         state.previusPage = action.payload.info.prev
+        state.character = {}
       })
       .addCase(getNextPage.rejected, (state, action) => {
         state.statusNext = 'error'
@@ -71,6 +90,7 @@ export const charactersSlice = createSlice({
         state.value = action.payload.results
         state.nextPage = action.payload.info.next
         state.previusPage = action.payload.info.prev
+        state.character = {}
       })
       .addCase(getPreviusPage.rejected, (state, action) => {
         state.statusPrev = 'error'

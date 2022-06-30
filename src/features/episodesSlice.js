@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-import { searchEpisodeByNameAxios } from '../services/apis/episodes'
+import { getEpisodeByIdAxios, searchEpisodeByNameAxios } from '../services/apis/episodes'
 import { getNextPageAxios, getPreviusPageAxios } from '../services/apis/general'
 
 export const searchByName = createAsyncThunk(
@@ -21,11 +21,18 @@ export const getPreviusPage = createAsyncThunk(
     return await getPreviusPageAxios(action)
   }
 )
+export const getEpisodeById = createAsyncThunk(
+  'episodes/getEpisodeById',
+  async (action) => {
+    return await getEpisodeByIdAxios(action)
+  }
+)
 
 export const episodesSlice = createSlice({
   name: 'episodes',
   initialState: {
     value: [],
+    episode: {},
     status: 'idle',
     statusNext: 'idle',
     statusPrev: 'idle',
@@ -39,6 +46,16 @@ export const episodesSlice = createSlice({
   },
   extraReducers (builder) {
     builder
+      .addCase(getEpisodeById.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(getEpisodeById.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.episode = action.payload
+      })
+      .addCase(getEpisodeById.rejected, (state, action) => {
+        state.status = 'error'
+      })
       .addCase(searchByName.pending, (state, action) => {
         state.status = 'loading'
       })
@@ -47,6 +64,7 @@ export const episodesSlice = createSlice({
         state.value = action.payload.results
         state.nextPage = action.payload.info.next
         state.previusPage = action.payload.info.prev
+        state.episode = {}
       })
       .addCase(searchByName.rejected, (state, action) => {
         state.status = 'error'
@@ -59,6 +77,7 @@ export const episodesSlice = createSlice({
         state.value = action.payload.results
         state.nextPage = action.payload.info.next
         state.previusPage = action.payload.info.prev
+        state.episode = {}
       })
       .addCase(getNextPage.rejected, (state, action) => {
         state.statusNext = 'error'
@@ -71,6 +90,7 @@ export const episodesSlice = createSlice({
         state.value = action.payload.results
         state.nextPage = action.payload.info.next
         state.previusPage = action.payload.info.prev
+        state.episode = {}
       })
       .addCase(getPreviusPage.rejected, (state, action) => {
         state.statusPrev = 'error'
