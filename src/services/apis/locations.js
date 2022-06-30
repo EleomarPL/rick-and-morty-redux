@@ -7,3 +7,7 @@ export const searchLocationByNameAxios = async (name) => {
   const response = await axios.get(`${LOCATION_API}?name=${name}`)
   return response.data
 }
+export const getLocationByIdAxios = async (id) => {
+  const response = await axios.get(`${LOCATION_API}/${id}`)
+  return response.data
+}

@@ -7,3 +7,7 @@ export const searchCharacterByNameAxios = async (name) => {
   const response = await axios.get(`${CHARACTER_API}?name=${name}`)
   return response.data
 }
+export const getCharacterByIdAxios = async (id) => {
+  const response = await axios.get(`${CHARACTER_API}/${id}`)
+  return response.data
+}
