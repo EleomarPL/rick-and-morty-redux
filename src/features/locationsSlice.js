@@ -27,6 +27,8 @@ export const locationsSlice = createSlice({
   initialState: {
     value: [],
     status: 'idle',
+    statusNext: 'idle',
+    statusPrev: 'idle',
     nextPage: null,
     previusPage: null
   },
@@ -50,28 +52,28 @@ export const locationsSlice = createSlice({
         state.status = 'error'
       })
       .addCase(getNextPage.pending, (state, action) => {
-        state.status = 'loading'
+        state.statusNext = 'loading'
       })
       .addCase(getNextPage.fulfilled, (state, action) => {
-        state.status = 'succeeded'
+        state.statusNext = 'succeeded'
         state.value = action.payload.results
         state.nextPage = action.payload.info.next
         state.previusPage = action.payload.info.prev
       })
       .addCase(getNextPage.rejected, (state, action) => {
-        state.status = 'error'
+        state.statusNext = 'error'
       })
       .addCase(getPreviusPage.pending, (state, action) => {
-        state.status = 'loading'
+        state.statusPrev = 'loading'
       })
       .addCase(getPreviusPage.fulfilled, (state, action) => {
-        state.status = 'succeeded'
+        state.statusPrev = 'succeeded'
         state.value = action.payload.results
         state.nextPage = action.payload.info.next
         state.previusPage = action.payload.info.prev
       })
       .addCase(getPreviusPage.rejected, (state, action) => {
-        state.status = 'error'
+        state.statusPrev = 'error'
       })
   }
 })

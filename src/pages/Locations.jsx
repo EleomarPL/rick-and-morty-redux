@@ -12,6 +12,8 @@ import { getNextPage, getPreviusPage, searchByName } from '../features/locations
 const Locations = () => {
   const locations = useSelector(state => state.locations.value)
   const status = useSelector(state => state.locations.status)
+  const statusNext = useSelector(state => state.locations.statusNext)
+  const statusPrev = useSelector(state => state.locations.statusPrev)
   const nextPage = useSelector(state => state.locations.nextPage)
   const previusPage = useSelector(state => state.locations.previusPage)
   const dispatch = useDispatch()
@@ -37,11 +39,11 @@ const Locations = () => {
       { status === 'loading' && <div>Cargando...</div> }
       <GroupButtons>
         <PreviusPageButton previusPage={ previusPage }
-          isLoading={ status === 'loading' }
+          isLoading={ statusPrev === 'loading' }
           handlePreviusPage={ handlePreviusPage }
         />
         <NextPageButton nextPage={ nextPage }
-          isLoading={ status === 'loading' }
+          isLoading={ statusNext === 'loading' }
           handleNextPage={ handleNextPage }
         />
       </GroupButtons>

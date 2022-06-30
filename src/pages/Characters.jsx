@@ -13,6 +13,8 @@ import GroupButtons from '../components/common/GroupButtons'
 const Characters = () => {
   const characters = useSelector(state => state.characters.value)
   const status = useSelector(state => state.characters.status)
+  const statusNext = useSelector(state => state.characters.statusNext)
+  const statusPrev = useSelector(state => state.characters.statusPrev)
   const nextPage = useSelector(state => state.characters.nextPage)
   const previusPage = useSelector(state => state.characters.previusPage)
   const dispatch = useDispatch()
@@ -37,11 +39,11 @@ const Characters = () => {
       />
       <GroupButtons>
         <PreviusPageButton previusPage={ previusPage }
-          isLoading={ status === 'loading' }
+          isLoading={ statusPrev === 'loading' }
           handlePreviusPage={ handlePreviusPage }
         />
         <NextPageButton nextPage={ nextPage }
-          isLoading={ status === 'loading' }
+          isLoading={ statusNext === 'loading' }
           handleNextPage={ handleNextPage }
         />
       </GroupButtons>

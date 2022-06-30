@@ -12,6 +12,8 @@ import { getNextPage, getPreviusPage, searchByName } from '../features/episodesS
 const Episodes = () => {
   const episodes = useSelector(state => state.episodes.value)
   const status = useSelector(state => state.episodes.status)
+  const statusNext = useSelector(state => state.episodes.statusNext)
+  const statusPrev = useSelector(state => state.episodes.statusPrev)
   const nextPage = useSelector(state => state.episodes.nextPage)
   const previusPage = useSelector(state => state.episodes.previusPage)
   const dispatch = useDispatch()
@@ -37,11 +39,11 @@ const Episodes = () => {
       { status === 'loading' && <div>Cargando...</div> }
       <GroupButtons>
         <PreviusPageButton previusPage={ previusPage }
-          isLoading={ status === 'loading' }
+          isLoading={ statusPrev === 'loading' }
           handlePreviusPage={ handlePreviusPage }
         />
         <NextPageButton nextPage={ nextPage }
-          isLoading={ status === 'loading' }
+          isLoading={ statusNext === 'loading' }
           handleNextPage={ handleNextPage }
         />
       </GroupButtons>
