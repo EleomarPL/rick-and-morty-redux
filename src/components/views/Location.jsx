@@ -40,12 +40,12 @@ const Location = () => {
     <section className="container-fluid">
       <BackButton />
       <div className="text-center">
-      { isLoading === 'loading' && <div>Cargando...</div> }
+      { isLoading === 'loading' && <div>Loading...</div> }
         <h1>{ location?.name }</h1>
         <p className="pt-4 mt-2">{ location?.type }</p>
         <p>{ location?.dimention }</p>
         <h2 className="mt-2">Characters</h2>
-        { isLoadingCharacter && <div>Cargando...</div> }
+        { isLoadingCharacter && <div>Loading...</div> }
         <ComponentGrouper>
           { characters &&
             characters.map(character => (

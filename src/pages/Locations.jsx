@@ -37,7 +37,7 @@ const Locations = () => {
       <InputSearchWithDebounder namePage="Locations"
         setSearcher={ setSearcher }
       />
-      { status === 'loading' && <div>Cargando...</div> }
+      { status === 'loading' && <div>Loading...</div> }
       <GroupButtons>
         <PreviusPageButton previusPage={ previusPage }
           isLoading={ statusPrev === 'loading' }

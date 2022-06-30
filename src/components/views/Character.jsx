@@ -40,7 +40,7 @@ const Character = () => {
     <section className="container-fluid">
       <BackButton />
       <div className="text-center">
-      { isLoading === 'loading' && <div>Cargando...</div> }
+      { isLoading === 'loading' && <div>Loading...</div> }
         <h1>{ character?.name }</h1>
         <p className="pt-4 mt-2">{ character?.status }</p>
         <p>{ character?.species }</p>
@@ -48,7 +48,7 @@ const Character = () => {
         <h2 className="mt-2">Origin</h2>
         <p className="pt-4 mt-2">{ character?.origin?.name }</p>
         <h2 className="mt-2">Episodes</h2>
-        { isLoadingEpisodes && <div>Cargando...</div> }
+        { isLoadingEpisodes && <div>Loading...</div> }
         <ComponentGrouper>
           { episodes &&
             episodes.map(episode => (

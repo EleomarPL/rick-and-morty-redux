@@ -47,7 +47,7 @@ const Characters = () => {
           handleNextPage={ handleNextPage }
         />
       </GroupButtons>
-      { status === 'loading' && <div>Cargando...</div> }
+      { status === 'loading' && <div>Loading...</div> }
       <ComponentGrouper>
         { characters &&
           characters.map(character => (
