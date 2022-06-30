@@ -1,16 +1,19 @@
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+
+import { getCharacterById } from '../../features/charactersSlice'
+import useCharacter from '../../hooks/useCharacter'
 
 import BackButton from '../buttons/BackButton'
-import { getCharacterById } from '../../features/charactersSlice'
 import ComponentGrouper from '../common/ComponentGrouper'
 import EpisodeCard from '../cards/EpisodeCard'
 
 const Character = () => {
   const [isLoadingEpisodes, setIsLoadingEpisodes] = useState(false)
   const [episodes, setEpisodes] = useState([])
+
+  const { getEpisodesByCharacter } = useCharacter()
   const { characterId } = useParams()
 
   const character = useSelector(state => state.characters.character)
@@ -25,16 +28,12 @@ const Character = () => {
   }, [character])
 
   const getAllEpisodes = async () => {
-    console.log({ character })
     if (character.episode) {
       setIsLoadingEpisodes(true)
-      const getEpisodes = []
-      for (const episode of character.episode) {
-        const resolve = await axios.get(episode)
-        getEpisodes.push(resolve.data)
-      }
-      setEpisodes(getEpisodes)
-      setIsLoadingEpisodes(false)
+      getEpisodesByCharacter(character).then(res => {
+        setIsLoadingEpisodes(false)
+        if (res) setEpisodes(res)
+      })
     }
   }
   return (

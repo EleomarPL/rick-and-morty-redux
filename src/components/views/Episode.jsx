@@ -3,15 +3,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 
 import { getEpisodeById } from '../../features/episodesSlice'
+import useEpisode from '../../hooks/useEpisode'
+
 import ComponentGrouper from '../common/ComponentGrouper'
 import CharacterCard from '../cards/CharacterCard'
-
-import axios from 'axios'
 import BackButton from '../buttons/BackButton'
 
 const Episode = () => {
   const [characters, setCharacters] = useState([])
   const [isLoadingCharacter, setIsLoadingCharacter] = useState(false)
+
+  const { getCharactersByEpisode } = useEpisode()
   const location = useParams()
 
   const episode = useSelector(state => state.episodes.episode)
@@ -28,13 +30,10 @@ const Episode = () => {
   const getAllCharacters = async () => {
     if (episode.characters) {
       setIsLoadingCharacter(true)
-      const getCharacters = []
-      for (const character of episode.characters) {
-        const resolve = await axios.get(character)
-        getCharacters.push(resolve.data)
-      }
-      setCharacters(getCharacters)
-      setIsLoadingCharacter(false)
+      getCharactersByEpisode(episode).then(res => {
+        setIsLoadingCharacter(false)
+        if (res) setCharacters(res)
+      })
     }
   }
 
