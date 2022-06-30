@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import NextPageButton from '../components/buttons/NextPageButton'
+import PreviusPageButton from '../components/buttons/PreviusPageButton'
 
 import EpisodeCard from '../components/cards/EpisodeCard'
 import ComponentGrouper from '../components/common/ComponentGrouper'
+import GroupButtons from '../components/common/GroupButtons'
 import InputSearchWithDebounder from '../components/views/InputSearchWithDebounder'
-import { searchByName } from '../features/episodesSlice'
+import { getNextPage, getPreviusPage, searchByName } from '../features/episodesSlice'
 
 const Episodes = () => {
   const episodes = useSelector(state => state.episodes.value)
   const status = useSelector(state => state.episodes.status)
+  const nextPage = useSelector(state => state.episodes.nextPage)
+  const previusPage = useSelector(state => state.episodes.previusPage)
   const dispatch = useDispatch()
 
   const [searcher, setSearcher] = useState('')
@@ -17,12 +22,29 @@ const Episodes = () => {
     dispatch(searchByName(searcher))
   }, [searcher])
 
+  const handleNextPage = () => {
+    dispatch(getNextPage(nextPage))
+  }
+  const handlePreviusPage = () => {
+    dispatch(getPreviusPage(previusPage))
+  }
+
   return (
     <div className="container-fluid">
       <InputSearchWithDebounder namePage="Episodio"
         setSearcher={ setSearcher }
       />
       { status === 'loading' && <div>Cargando...</div> }
+      <GroupButtons>
+        <PreviusPageButton previusPage={ previusPage }
+          isLoading={ status === 'loading' }
+          handlePreviusPage={ handlePreviusPage }
+        />
+        <NextPageButton nextPage={ nextPage }
+          isLoading={ status === 'loading' }
+          handleNextPage={ handleNextPage }
+        />
+      </GroupButtons>
       <ComponentGrouper>
         { episodes &&
           episodes.map(episode => (
